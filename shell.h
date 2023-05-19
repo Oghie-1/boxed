@@ -116,9 +116,9 @@ void _puts(char *);
 int _putchar(char);
 
 /* toem_exits.c */
-char *_strncpy(char *, char *, int);
-char *_strncat(char *, char *, int);
-char *_strchr(char *, char);
+char *_strncpy(char *dest, const char *src, int n);
+char *_strncat(char *dest, const char *src, int n);
+char *_strchr(const char *s, char c);
 
 /* toem_tokenizer.c */
 char **strtow(char *, char *);
@@ -137,8 +137,6 @@ int interactive(info_t *);
 int is_delim(char, const char *);
 int _isalpha(int);
 int _atoi(const char *);
-
-
 
 
 /* toem_errors1.c */

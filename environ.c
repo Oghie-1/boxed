@@ -106,7 +106,7 @@ for (i = 0; environ[i]; i++)
 {
 if (add_node_end(&node, environ[i], 0) == NULL)
 {
-free_list(node);
+free_list(&node);
 return (1);
 }
 }
