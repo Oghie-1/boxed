@@ -134,9 +134,12 @@ int bfree(void **);
 
 /* toem_atoi.c */
 int interactive(info_t *);
-int is_delim(char, char *);
+int is_delim(char, const char *);
 int _isalpha(int);
-int _atoi(char *);
+int _atoi(const char *);
+
+
+
 
 /* toem_errors1.c */
 int _erratoi(char *);

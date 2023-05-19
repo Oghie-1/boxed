@@ -1,6 +1,6 @@
 #include "shell.h"
-#include <ctype.h>  // Added for the isspace and isdigit functions
-#include <string.h> // Added for the strchr function
+#include <ctype.h>  /* Added for the isspace and isdigit functions */
+#include <string.h> /* Added for the strchr function */
 
 /**
  * interactive - checks if the shell is in interactive mode
@@ -28,7 +28,7 @@ stderr_is_terminal && shell_info->readfd <= STDERR_FILENO);
  */
 int is_delim(char character, const char *delimiter_string)
 {
-    return (strchr(delimiter_string, character) != NULL);
+return (strchr(delimiter_string, character) != NULL);
 }
 
 /**
@@ -39,27 +39,26 @@ int is_delim(char character, const char *delimiter_string)
  */
 int _atoi(const char *s)
 {
-    int sign = 1;
-    unsigned int result = 0;
+int sign = 1;
+unsigned int result = 0;
+while (isspace((unsigned char)*s))  /* Cast to unsigned char for isspace */
+s++;
 
-    while (isspace((unsigned char)*s))  // Cast to unsigned char for isspace
-        s++;
+if (*s == '-')
+{
+sign = -1;
+s++;
+}
+else if (*s == '+')
+{
+s++;
+}
 
-    if (*s == '-')
-    {
-        sign = -1;
-        s++;
-    }
-    else if (*s == '+')
-    {
-        s++;
-    }
+while (isdigit((unsigned char)*s))  /* Cast to unsigned char for isdigit */
+{
+result = result * 10 + (*s - '0');
+s++;
+}
 
-    while (isdigit((unsigned char)*s))  // Cast to unsigned char for isdigit
-    {
-        result = result * 10 + (*s - '0');
-        s++;
-    }
-
-    return (sign * result);
+return (sign * result);
 }

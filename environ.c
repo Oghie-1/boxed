@@ -8,7 +8,7 @@
  */
 void print_env_list(const info_t *info)
 {
-    print_list_str(info->env);
+print_list_str(info->env);
 }
 
 /**
@@ -20,18 +20,18 @@ void print_env_list(const info_t *info)
  */
 char *get_env_var(const info_t *info, const char *name)
 {
-    list_t *node = info->env;
-    char *p;
+list_t *node = info->env;
+char *p;
 
-    while (node)
-    {
-        p = starts_with(node->str, name);
-        if (p && *p)
-            return (p);
-        node = node->next;
-    }
+while (node)
+{
+p = starts_with(node->str, name);
+if (p && *p)
+return (p);
+node = node->next;
+}
 
-    return (NULL);
+return (NULL);
 }
 
 /**
@@ -43,17 +43,17 @@ char *get_env_var(const info_t *info, const char *name)
  */
 void set_env_var(info_t *info)
 {
-    if (info->argc != 3)
-    {
-        _eputs("Incorrect number of arguments\n");
-        return;
-    }
+if (info->argc != 3)
+{
+_eputs("Incorrect number of arguments\n");
+return;
+}
 
-    if (_setenv(info, info->argv[1], info->argv[2]) != 0)
-    {
-        _eputs("Error setting environment variable\n");
-        return;
-    }
+if (_setenv(info, info->argv[1], info->argv[2]) != 0)
+{
+_eputs("Error setting environment variable\n");
+return;
+}
 }
 
 /**
@@ -64,16 +64,16 @@ void set_env_var(info_t *info)
  */
 void unset_env_var(info_t *info)
 {
-    int i;
+int i;
 
-    if (info->argc == 1)
-    {
-        _eputs("Too few arguments.\n");
-        return;
-    }
+if (info->argc == 1)
+{
+_eputs("Too few arguments.\n");
+return;
+}
 
-    for (i = 1; i < info->argc; i++)
-        _unsetenv(info, info->argv[i]);
+for (i = 1; i < info->argc; i++)
+_unsetenv(info, info->argv[i]);
 }
 
 /**
@@ -82,21 +82,36 @@ void unset_env_var(info_t *info)
  *
  * Return: 0 on success, 1 on failure
  */
+void free_list(list_t **head)
+{
+list_t *current = *head;
+list_t *next;
+
+while (current != NULL)
+{
+next = current->next;
+free(current->str);
+free(current);
+current = next;
+}
+*head = NULL; /* Set the head to NULL after freeing the list */
+}
+
 int populate_env_list(info_t *info)
 {
-    list_t *node = NULL;
-    size_t i;
+list_t *node = NULL;
+size_t i;
 
-    for (i = 0; environ[i]; i++)
-    {
-        if (add_node_end(&node, environ[i], 0) == NULL)
-        {
-            free_list(node);
-            return (1);
-        }
-    }
+for (i = 0; environ[i]; i++)
+{
+if (add_node_end(&node, environ[i], 0) == NULL)
+{
+free_list(node);
+return (1);
+}
+}
 
-    info->env = node;
-    return (0);
+info->env = node;
+return (0);
 }
 
