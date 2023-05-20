@@ -33,7 +33,7 @@ return dest;
  */
 char *_strdup(const char *str)
 {
-int i = 0;
+int i;
 int length = 0;
 char *ret;
 
@@ -47,7 +47,7 @@ ret = malloc(sizeof(char) * (length + 1));
 if (!ret)
 return NULL;
 
-for (i < length; i++;)
+for (i = 0; i < length; i++)
 ret[i] = str[i];
 
 return ret;
