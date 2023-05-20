@@ -1,4 +1,4 @@
-include "shell.h"
+#include "shell.h"
 
 /**
  * _strcpy - copies a string
@@ -9,20 +9,20 @@ include "shell.h"
  */
 char *_strcpy(char *dest, char *src)
 {
-    int i = 0;
+int i = 0;
 
-    if (dest == src || src == NULL)
-        return dest;
+if (dest == src || src == NULL)
+return dest;
 
-    while (src[i])
-    {
-        dest[i] = src[i];
-        i++;
-    }
+while (src[i])
+{
+dest[i] = src[i];
+i++;
+}
 
-    dest[i] = '\0';
+dest[i] = '\0';
 
-    return dest;
+return dest;
 }
 
 /**
@@ -33,23 +33,24 @@ char *_strcpy(char *dest, char *src)
  */
 char *_strdup(const char *str)
 {
-    int length = 0;
-    char *ret;
+int i = 0;
+int length = 0;
+char *ret;
 
-    if (str == NULL)
-        return NULL;
+if (str == NULL)
+return NULL;
 
-    while (str[length])
-        length++;
+while (str[length])
+length++;
 
-    ret = malloc(sizeof(char) * (length + 1));
-    if (!ret)
-        return NULL;
+ret = malloc(sizeof(char) * (length + 1));
+if (!ret)
+return NULL;
 
-    for (int i = 0; i <= length; i++)
-        ret[i] = str[i];
+for (i < length; i++;)
+ret[i] = str[i];
 
-    return ret;
+return ret;
 }
 
 /**
@@ -58,14 +59,14 @@ char *_strdup(const char *str)
  */
 void _puts(char *str)
 {
-    if (str == NULL)
-        return;
+if (str == NULL)
+return;
 
-    while (*str)
-    {
-        _putchar(*str);
-        str++;
-    }
+while (*str)
+{
+_putchar(*str);
+str++;
+}
 }
 
 /**
@@ -76,17 +77,17 @@ void _puts(char *str)
  */
 int _putchar(char c)
 {
-    static int i = 0;
-    static char buf[WRITE_BUF_SIZE];
+static int i = 0;
+static char buf[WRITE_BUF_SIZE];
 
-    if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE - 1)
-    {
-        write(1, buf, i);
-        i = 0;
-    }
+if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE - 1)
+{
+write(1, buf, i);
+i = 0;
+}
 
-    if (c != BUF_FLUSH)
-        buf[i++] = c;
+if (c != BUF_FLUSH)
+buf[i++] = c;
 
-    return 1;
+return 1;
 }

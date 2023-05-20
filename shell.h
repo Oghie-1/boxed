@@ -5,6 +5,9 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
+#include <stddef.h>
+#include <stdlib.h>
+#include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <sys/stat.h>
@@ -18,7 +21,7 @@
 /* read/write buffers */
 #define READ_BUF_SIZE 1024
 #define WRITE_BUF_SIZE 1024
-#define BUF_FLUSH -1
+#define BUF_FLUSH '\0'
 
 /* command chaining */
 #define CMD_NORM 0
@@ -112,10 +115,10 @@ char *starts_with(const char *, const char *);
 char *_strcat(char *, char *);
 
 /* toem_string1.c */
-char *_strcpy(char *, char *);
-char *_strdup(const char *);
-void _puts(char *);
-int _putchar(char);
+char *_strcpy(char *dest, char *src);
+char *_strdup(const char *str);
+void _puts(char *str);
+int _putchar(char c);
 
 /* toem_exits.c */
 char *_strncpy(char *dest, const char *src, int n);
